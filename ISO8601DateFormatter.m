@@ -71,6 +71,17 @@ static NSCache *timeZonesByOffset;
 	return self;
 }
 
+- (void) dealloc {
+	[defaultTimeZone release];
+
+	[unparsingFormatter release];
+	[lastUsedFormatString release];
+	[parsingCalendar release];
+	[unparsingCalendar release];
+
+	[super dealloc];
+}
+
 @synthesize defaultTimeZone;
 - (void) setDefaultTimeZone:(NSTimeZone *)tz {
 	if (defaultTimeZone != tz) {
