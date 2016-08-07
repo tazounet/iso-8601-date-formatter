@@ -47,20 +47,11 @@ static NSCache *timeZonesByOffset;
 }
 
 + (void) purgeGlobalCaches {
-<<<<<<< HEAD
-	ISO8601TimeZoneCache __attribute__((unused)) *oldCache = timeZoneCache;
-	timeZoneCache = nil;
-}
-
-- (NSCalendar *) makeCalendarWithDesiredConfiguration {
-	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-=======
     [timeZonesByOffset removeAllObjects];
 }
 
 - (NSCalendar *) makeCalendarWithDesiredConfiguration {
 	NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian] autorelease];
->>>>>>> boredzo/master
 	calendar.firstWeekday = 2; //Monday
 	calendar.timeZone = [NSTimeZone defaultTimeZone];
 	return calendar;
@@ -79,20 +70,6 @@ static NSCache *timeZonesByOffset;
 	}
 	return self;
 }
-
-<<<<<<< HEAD
-=======
-- (void) dealloc {
-	[defaultTimeZone release];
-
-	[unparsingFormatter release];
-	[lastUsedFormatString release];
-	[parsingCalendar release];
-	[unparsingCalendar release];
-
-	[super dealloc];
-}
->>>>>>> boredzo/master
 
 @synthesize defaultTimeZone;
 - (void) setDefaultTimeZone:(NSTimeZone *)tz {
@@ -178,13 +155,8 @@ static BOOL is_leap_year(NSUInteger year);
 
 	NSDate *now = [NSDate date];
 
-<<<<<<< HEAD
-	NSDateComponents *components = [[NSDateComponents alloc] init];
-	NSDateComponents *nowComponents = [parsingCalendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:now];
-=======
 	NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
 	NSDateComponents *nowComponents = [parsingCalendar components:NSCalendarUnitYear fromDate:now];
->>>>>>> boredzo/master
 
 	NSUInteger
 		//Date
