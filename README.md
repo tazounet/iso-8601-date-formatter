@@ -54,6 +54,23 @@ Three test programs are included: unparse-date, unparse-weekdate, and unparse-or
 
 ### Version history
 
+This version is 0.8. Changes from 0.7:
+
+- watchOS is now officially supported. ba5cbc3 de905a1 45ab5eb (Thanks, Neil Daniels!)
+- tvOS is now officially supported. b56be72 (Thanks, Boris Bügling!)
+- Carthage is now officially supported. da460bf (Thanks, Agnes Vasarhelyi!)
+- Added support for millisecond precision. 065612a (Thanks, Rob Keniger!)
+- Fixed bug that could insert the sign character into the middle of time zone specifications. 7b189ae 5ceb8d6 (Thanks, Hector Zarate!)
+- Improved thread safety of time zone cache. 98bf9cb (Thanks, Peter Steinberger!)
+- Tests now use XCTest. 3cb3921 591ca75
+- API now declares nullability. 40ba01d
+- Header documentation should now be parseable by Xcode. a76f42c 54136ac
+- Updated link to Rick McCarty's week dates algorithm. 58f3d26 (Thanks, Christopher Bowns!)
+- Begun the move to newer API names. 446b9f3 (Thanks, William Kent!)
+- Maintained support for legacy runtime (i386 Mac) targets. c02cffe 01ea541 (Thanks, Mike Abdullah!)
+- Fixed a build error that was introduced by SDK changes. 6d01598 (Thanks, Kyle Fuller!)
+- Fixed an uninitialized variable. 1b09a6a (Thanks, Marcel Jackwerth!)
+
 This version is 0.7. Changes from 0.6:
 
 - Cocoa Touch is now officially supported. 4bc0a08 5d95233
@@ -134,6 +151,8 @@ ISO 8601 leaves quite a bit up to the parties exchanging dates. I hope I've chos
 * ISO 8601 permits the choice of either T0 or T24 for midnight. This implementation uses T0. T24 will get you T0 on the following day.
 * If no time-zone is specified, local time (as returned by [NSTimeZone localTimeZone]) is used.
 
+None of the above defaults apply if you're using the NSDateComponents-based API.
+
 When a date is parsed that has a year but no century, this implementation adds the current century.
 
 The implementation is tolerant of out-of-range numbers. For example, "2005-13-40T24:62:89" == 1:02 AM on 2006-02-10. Notice that the month (13 > 12), date (40 > 31), hour (24 > 23), minute (62 > 59), and second (89 > 59) are all out-of-range.
@@ -154,6 +173,34 @@ I use [Rick McCarty's algorithm for converting calendar dates to week dates](htt
 
 * There is no method to analyze a date string and tell you what was found in it (year, month, week, day, ordinal day, etc.). Feel free to submit a patch.
 
+## Contributing
+
+This project adheres to [the Contributor Covenant, version 1.4](CODE OF CONDUCT.md). Please read that before deciding whether you are willing to contribute.
+
+You're welcome to work on any open bug in the issue tracker, but we do have some that are [up-for-grabs](https://github.com/boredzo/iso-8601-date-formatter/issues?q=is%3Aissue+is%3Aopen+label%3Aup-for-grabs) that are particularly easy or potentially interesting.
+
+Please don't break compatibility with old OS versions (OS X 10.7/iOS 4) until work begins on the 1.0 release. That won't happen until 0.9 is done, and starting 1.0-only work (e.g., ARCification) early will lead to conflicts.
+
+The tests use ARC, but the formatter itself does not ([yet](https://github.com/boredzo/iso-8601-date-formatter/issues/21)). Please be sure to add the needed `release` or `autorelease` messages when adding code that creates objects.
+
+Adding test cases is highly encouraged, especially if adding new functionality. Ideally, please test a comprehensive set of:
+
+- success cases
+- failure cases
+- exception (programmer error) cases: even if something isn't supported, the behavior should still be reliable and preferably diagnostically helpful
+
+Travis CI will run the tests automatically when you submit a pull request, and a PR with failing tests will not be accepted.
+
+Contributions consisting of nothing but test cases are welcome. If one/some of those cases fail, please include fixes, or at least, submit an issue report for the failure(s) and surround the failing tests with:
+
+    #if FIXED_(issue number)
+    - (void) test_thingThatDoesntWorkButShould {
+        ⋮
+    }
+    #endif FIXED_(issue number)
+
+As far as code style, mostly, please try to remain consistent with the existing code. Please do add nullability annotations (`ISO8601_NULLABLE`/`ISO8601_NONNULL`) and `const` to new code whenever applicable.
+
 ## Copyright
 
-This code is copyright 2006–2013 Peter Hosey. It is under the BSD license; see LICENSE.txt for the full text of the license.
+This code is copyright 2006–2016 Peter Hosey. It is under the BSD license; see LICENSE.txt for the full text of the license.

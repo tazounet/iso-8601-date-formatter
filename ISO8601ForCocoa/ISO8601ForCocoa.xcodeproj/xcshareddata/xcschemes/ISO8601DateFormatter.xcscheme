@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "31A271B417CE9B5A00E3FA7D"
-               BuildableName = "libISO8601ForCocoaTouch.a"
-               BlueprintName = "ISO8601ForCocoaTouch"
+               BlueprintIdentifier = "027E31B71A52DFCE00802098"
+               BuildableName = "ISO8601.framework"
+               BlueprintName = "ISO8601"
+               ReferencedContainer = "container:ISO8601ForCocoa.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "31AEAFDC17546BC800BD292F"
+               BuildableName = "ISO8601ForCocoaTests.xctest"
+               BlueprintName = "ISO8601ForCocoaTests"
                ReferencedContainer = "container:ISO8601ForCocoa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,6 +60,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "31AEAFDC17546BC800BD292F"
+               BuildableName = "ISO8601ForCocoaTests.xctest"
+               BlueprintName = "ISO8601ForCocoaTests"
+               ReferencedContainer = "container:ISO8601ForCocoa.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "31A271C317CE9B5B00E3FA7D"
                BuildableName = "ISO8601ForCocoaTouchTests.xctest"
                BlueprintName = "ISO8601ForCocoaTouchTests"
@@ -53,6 +77,15 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "027E31B71A52DFCE00802098"
+            BuildableName = "ISO8601.framework"
+            BlueprintName = "ISO8601"
+            ReferencedContainer = "container:ISO8601ForCocoa.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -69,9 +102,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "31A271B417CE9B5A00E3FA7D"
-            BuildableName = "libISO8601ForCocoaTouch.a"
-            BlueprintName = "ISO8601ForCocoaTouch"
+            BlueprintIdentifier = "027E31B71A52DFCE00802098"
+            BuildableName = "ISO8601.framework"
+            BlueprintName = "ISO8601"
             ReferencedContainer = "container:ISO8601ForCocoa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,6 +117,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "027E31B71A52DFCE00802098"
+            BuildableName = "ISO8601.framework"
+            BlueprintName = "ISO8601"
+            ReferencedContainer = "container:ISO8601ForCocoa.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
