@@ -51,7 +51,7 @@ static NSCache *timeZonesByOffset;
 }
 
 - (NSCalendar *) makeCalendarWithDesiredConfiguration {
-	NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian] autorelease];
+	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 	calendar.firstWeekday = 2; //Monday
 	calendar.timeZone = [NSTimeZone defaultTimeZone];
 	return calendar;
@@ -69,17 +69,6 @@ static NSCache *timeZonesByOffset;
 		useMillisecondPrecision = NO;
 	}
 	return self;
-}
-
-- (void) dealloc {
-	[defaultTimeZone release];
-
-	[unparsingFormatter release];
-	[lastUsedFormatString release];
-	[parsingCalendar release];
-	[unparsingCalendar release];
-
-	[super dealloc];
 }
 
 @synthesize defaultTimeZone;
@@ -166,7 +155,7 @@ static BOOL is_leap_year(NSUInteger year);
 
 	NSDate *now = [NSDate date];
 
-	NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+	NSDateComponents *components = [[NSDateComponents alloc] init];
 	NSDateComponents *nowComponents = [parsingCalendar components:NSCalendarUnitYear fromDate:now];
 
 	NSUInteger

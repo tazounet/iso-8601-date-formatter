@@ -61,7 +61,7 @@ extern const unichar ISO8601DefaultTimeSeparatorCharacter;
 	BOOL parsesStrictly;
 }
 
-@property(nonatomic, retain) NSTimeZone *ISO8601_NULLABLE defaultTimeZone;
+@property(nonatomic, strong) NSTimeZone *ISO8601_NULLABLE defaultTimeZone;
 
 #pragma mark Parsing
 /*!
