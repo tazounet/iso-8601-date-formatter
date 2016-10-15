@@ -57,7 +57,7 @@ static NSCache *timeZonesByOffset;
 	return calendar;
 }
 
-- (id) init {
+- (instancetype) init {
 	if ((self = [super init])) {
 		parsingCalendar = [self makeCalendarWithDesiredConfiguration];
 		unparsingCalendar = [self makeCalendarWithDesiredConfiguration];
@@ -160,11 +160,11 @@ static BOOL is_leap_year(NSUInteger year);
 
 	NSUInteger
 		//Date
-		year = NSUndefinedDateComponent,
-		month_or_week = NSUndefinedDateComponent,
-		day = NSUndefinedDateComponent,
+		year = NSDateComponentUndefined,
+		month_or_week = NSDateComponentUndefined,
+		day = NSDateComponentUndefined,
 		//Time
-		hour = NSUndefinedDateComponent;
+		hour = NSDateComponentUndefined;
 	NSTimeInterval
 		minute = NAN,
 		second = NAN;
@@ -184,7 +184,7 @@ static BOOL is_leap_year(NSUInteger year);
 	if (strict) timeSep = ISO8601DefaultTimeSeparatorCharacter;
 	NSAssert(timeSep != '\0', @"Time separator must not be NUL.");
 
-	BOOL isValidDate = ([string length] > 0U);
+	BOOL isValidDate = (string.length > 0U);
 	NSTimeZone *timeZone = nil;
 
 	const unichar *ch = (const unichar *)[string cStringUsingEncoding:NSUnicodeStringEncoding];
@@ -547,7 +547,7 @@ static BOOL is_leap_year(NSUInteger year);
 							}
 
 							NSInteger timeZoneOffset = (tz_hour * 3600) + (tz_minute * 60);
-							NSNumber *offsetNum = [NSNumber numberWithInteger:timeZoneOffset];
+							NSNumber *offsetNum = @(timeZoneOffset);
 							timeZone = [timeZonesByOffset objectForKey:offsetNum];
 							if (!timeZone) {
 								timeZone = [NSTimeZone timeZoneForSecondsFromGMT:timeZoneOffset];
@@ -564,8 +564,8 @@ static BOOL is_leap_year(NSUInteger year);
 			components.year = year;
 			components.day = day;
 			components.hour = hour;
-			components.minute = isnan(minute) ? NSUndefinedDateComponent : (NSInteger)minute;
-			components.second = isnan(second) ? NSUndefinedDateComponent : (NSInteger)second;
+			components.minute = isnan(minute) ? NSDateComponentUndefined : (NSInteger)minute;
+			components.second = isnan(second) ? NSDateComponentUndefined : (NSInteger)second;
 
 			if (outFractionOfSecond != NULL) {
 				NSTimeInterval fractionOfSecond = second - (NSInteger)second;
@@ -667,7 +667,7 @@ static BOOL is_leap_year(NSUInteger year);
 		[timeFormatMutable replaceOccurrencesOfString:@":"
 		                               	   withString:[NSString stringWithCharacters:&timeSep length:1U]
 	                                      	  options:NSBackwardsSearch | NSLiteralSearch
-	                                        	range:(NSRange){ 0UL, [timeFormat length] }];
+	                                        	range:(NSRange){ 0UL, timeFormat.length }];
 		timeFormat = timeFormatMutable;
 	}
 	return timeFormat;
